@@ -82,19 +82,21 @@ function create(req, res) {
 }
 
 function update(req, res) {
-    
     const { data: { name, description, price, image_url } = {} } = req.body;
+
    
-    // Update the dish
-    res.locals.dish = {
-		id: res.locals.dish.id,
-		name: name,
-		description: description,
-		price: price,
-		image_url: image_url,
-	}
-    res.json({ data: res.locals.dish });
+    const updatedDish = {
+        ...res.locals.dish,
+        name: name,
+        description: description,
+        price: price,
+        image_url: image_url,
+    };
+
+    
    
+
+    res.json({ data: updatedDish });
 }
 
 

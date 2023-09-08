@@ -128,20 +128,18 @@ function create(req, res) {
 }
 
 function update(req, res) {
-   
-    const { data: { deliverTo, mobileNumber, status, dishes} = {} } = req.body
-   
-    // Update the dish
-   res.locals.order = {
-		id: res.locals.order.id,
-		deliverTo: deliverTo,
-		mobileNumber: mobileNumber,
-		dishes: dishes,
-		status: status,
-	}
+    const { data: { deliverTo, mobileNumber, status, dishes } = {} } = req.body;
+
+    res.locals.order = {
+        ...res.locals.order, 
+        deliverTo: deliverTo,
+        mobileNumber: mobileNumber,
+        dishes: dishes,
+        status: status,
+    };
 
     res.json({ data: res.locals.order });
-    }
+}
 
 
 function destroy(req, res) {
